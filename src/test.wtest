@@ -4,7 +4,7 @@ import inta.*
 
 describe'test general'{
 
-	//Plantas
+	
 	const menta1 = new Menta(anioDeObtencion =2021,altura=1)
 	const menta2 = new Menta(anioDeObtencion =2021,altura=0.3)
 	const soja1	= new Soja(anioDeObtencion =2009,altura=0.6)
@@ -13,15 +13,14 @@ describe'test general'{
 	const sojaT = new SojaTransgenica(anioDeObtencion =2020,altura=1.5)
 	const soja2 = new Soja(anioDeObtencion =2020,altura=1.5)
 	const hierba1 = new Hierbabuena(anioDeObtencion =2021,altura=1)
-	
-	//Parcelas
 	const parcela1 = new Parcela(ancho=20,largo=1, horasDeSol=8)
 	const soja3= new Soja(anioDeObtencion =2009,altura=1.5)
 	const soja4= new Soja(anioDeObtencion =2009,altura=1.5)
 	const soja5= new Soja(anioDeObtencion =2009,altura=1.5)
 	const soja6= new Soja(anioDeObtencion =2009,altura=1.5)
 	const parcela2 = new Parcela(ancho=1,largo=1, horasDeSol=7)
-	
+	const parcelaEco = new ParcelaEcologica(ancho=20,largo=1, horasDeSol=8)
+	const parcelaInd = new ParcelaIndustrial(ancho=20,largo=1, horasDeSol=7)
 
 
 test 'Plantas y variedades' {
@@ -49,8 +48,6 @@ test 'Plantas y variedades' {
 	
 	}
 
-
-
 test 'Parcelas'{
 	
 	
@@ -61,7 +58,8 @@ test 'Parcelas'{
 	//assert.that(parcela1.tieneComplicaciones())
 	
 }
-test' parcelasIdeales'{
+
+test 'parcelasIdeales'{
 	assert.that(menta1.esParcelaIdeal(parcela1))
 	assert.that(hierba1.esParcelaIdeal(parcela1))
 	parcela1.quitarLote([soja3,soja4,soja5,soja6])
@@ -73,6 +71,14 @@ test' parcelasIdeales'{
 	assert.that(sojaT.esParcelaIdeal(parcela2))
 }
 
+test 'Asociación de plantas' {
+	
+	assert.that(parcelaEco.seAsociaBien(menta1))
+	parcelaInd.plantarLote([menta1,menta2])
+	assert.that(parcelaInd.seAsociaBien(quinoa1))
+	
+	
+}
 
 test 'Inta'{
 	assert.that(true)

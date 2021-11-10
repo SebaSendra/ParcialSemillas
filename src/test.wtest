@@ -1,0 +1,82 @@
+import plantas.*
+import parcelas.*
+import inta.*
+
+describe'test general'{
+
+	//Plantas
+	const menta1 = new Menta(anioDeObtencion =2021,altura=1)
+	const menta2 = new Menta(anioDeObtencion =2021,altura=0.3)
+	const soja1	= new Soja(anioDeObtencion =2009,altura=0.6)
+	const quinoa1 = new Quinoa(anioDeObtencion =2010,altura=0.6, toleranciaAlSol=12)
+	const quinoa2 = new Quinoa(anioDeObtencion =2001,altura=0.6,toleranciaAlSol=9)
+	const sojaT = new SojaTransgenica(anioDeObtencion =2020,altura=1.5)
+	const soja2 = new Soja(anioDeObtencion =2020,altura=1.5)
+	const hierba1 = new Hierbabuena(anioDeObtencion =2021,altura=1)
+	
+	//Parcelas
+	const parcela1 = new Parcela(ancho=20,largo=1, horasDeSol=8)
+	const soja3= new Soja(anioDeObtencion =2009,altura=1.5)
+	const soja4= new Soja(anioDeObtencion =2009,altura=1.5)
+	const soja5= new Soja(anioDeObtencion =2009,altura=1.5)
+	const soja6= new Soja(anioDeObtencion =2009,altura=1.5)
+	const parcela2 = new Parcela(ancho=1,largo=1, horasDeSol=7)
+	
+
+
+test 'Plantas y variedades' {
+	//Menta
+	assert.that(menta1.daSemillas())
+	assert.equals(3,menta1.espacioOcupado())
+	assert.notThat(menta2.daSemillas())
+	assert.equals(0.9,menta2.espacioOcupado())
+	
+	//Soja
+	assert.equals(7,soja1.toleranciaAlSol())
+	assert.notThat(soja1.daSemillas())
+	assert.equals(0.3,soja1.espacioOcupado())
+	
+	//Quinoa
+	assert.that(quinoa1.daSemillas())
+	assert.that(quinoa2.daSemillas())
+		
+	// Soja Transgénica
+	assert.notThat(sojaT.daSemillas())
+	assert.that(soja2.daSemillas()) 
+	
+	//Hierbabuena
+	assert.equals(6,hierba1.espacioOcupado())
+	
+	}
+
+
+
+test 'Parcelas'{
+	
+	
+	assert.equals(4,parcela1.cantidadMaxima())
+	parcela1.plantarLote([soja3,soja4,soja5,soja6])
+	assert.notThat(parcela1.tieneComplicaciones())
+	//parcela1.plantarPlanta(soja2)
+	//assert.that(parcela1.tieneComplicaciones())
+	
+}
+test' parcelasIdeales'{
+	assert.that(menta1.esParcelaIdeal(parcela1))
+	assert.that(hierba1.esParcelaIdeal(parcela1))
+	parcela1.quitarLote([soja3,soja4,soja5,soja6])
+	assert.that(parcela1.plantas().isEmpty())
+	assert.that(quinoa1.esParcelaIdeal(parcela1))
+	assert.notThat(soja1.esParcelaIdeal(parcela1))
+	assert.notThat(sojaT.esParcelaIdeal(parcela1))
+	assert.that(soja1.esParcelaIdeal(parcela2))
+	assert.that(sojaT.esParcelaIdeal(parcela2))
+}
+
+
+test 'Inta'{
+	assert.that(true)
+}
+
+
+}

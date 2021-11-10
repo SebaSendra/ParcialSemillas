@@ -21,6 +21,7 @@ describe'test general'{
 	const parcela2 = new Parcela(ancho=1,largo=1, horasDeSol=7)
 	const parcelaEco = new ParcelaEcologica(ancho=20,largo=1, horasDeSol=8)
 	const parcelaInd = new ParcelaIndustrial(ancho=20,largo=1, horasDeSol=7)
+	
 
 
 test 'Plantas y variedades' {

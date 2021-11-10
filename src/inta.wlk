@@ -1,7 +1,7 @@
 object inta{
 	const parcelas = []
 	
-	method cantPlantas(){}
+	method cantPlantas() = parcelas.sum {p=>p.cantPlantas()}
 	method cantParcelas() = parcelas.size()
 	method promedioDePlantas() =  self.cantPlantas() / self.cantParcelas() 
 	

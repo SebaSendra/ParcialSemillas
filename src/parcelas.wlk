@@ -28,6 +28,7 @@ class Parcela {
 	method quitarLote(loteDePlantas){plantas.removeAll(loteDePlantas)}
 	method horasDeSol() =horasDeSol
 	method plantas() = plantas
+	method cantPlantas() = plantas.size()
 	
 }
 
